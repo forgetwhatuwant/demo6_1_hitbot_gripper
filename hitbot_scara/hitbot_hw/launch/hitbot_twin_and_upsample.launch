@@ -1,0 +1,11 @@
+<launch>
+
+  <node type="hitbot_twin_control_node" pkg="hitbot_twin_control" name="hitbot_twin_control" output="screen">
+      <remap from="/hitbot_scara/joints_command" to="/hitbot_scara/joint_command_low_rate" />
+  </node>
+
+  <node type="joint_command_upsampler.py" pkg="hitbot_hw" name="joint_command_upsampler" output="screen">
+  </node>
+
+
+</launch>

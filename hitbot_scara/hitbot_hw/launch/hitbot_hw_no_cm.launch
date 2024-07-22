@@ -1,0 +1,8 @@
+<launch>
+
+  <node type="hitbot_scara_msg_control_node" pkg="hitbot_hw" name="hitbot_scara_msg_control_node" output="screen">
+  </node>
+  <node type="gripper_control_node" pkg="hitbot_hw" name="gripper_control_node" output="screen">
+  </node>
+
+</launch>

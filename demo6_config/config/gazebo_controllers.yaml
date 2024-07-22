@@ -1,0 +1,32 @@
+gazebo_ros_control:
+  pid_gains:
+    g_joint_1:
+      p: 20.0
+      i: 0.1
+      d: 0.0
+      i_clamp: 0.2
+      antiwindup: false
+      publish_state: true
+    g_joint2:
+      p: 20.0
+      i: 0.1
+      d: 0.0
+      i_clamp: 0.2
+      antiwindup: false
+      publish_state: true
+
+controller_list:
+  - name: arm_group_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+  - name: gripper_group_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    joints:
+      - g_joint1
+      - g_joint2

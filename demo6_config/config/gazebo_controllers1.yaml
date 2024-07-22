@@ -1,0 +1,57 @@
+# Publish joint_states
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+gazebo_control:
+# Configure effort-based trajectory controller for the Panda arm
+ arm_group_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - joint1
+        - joint2
+        - joint3
+        - joint4
+
+    gains:
+        panda_joint1: { p: 100, d: 1.0, i: 0.01 }
+        panda_joint2: { p: 100, d: 1.0, i: 0.01 }
+        panda_joint3: { p: 100, d: 1.0, i: 0.01 }
+        panda_joint4: { p: 100, d: 1.0, i: 0.01 }
+
+    state_publish_rate: 25
+    constraints:
+        goal_time: 2.0
+
+# Configure effort-based trajectory controller for the Panda hand
+ gripper_group_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - g_joint_1
+        - g_joint2
+
+
+    gains:
+        g_joint_1: { p: 20.0, i: 0.1, d: 0.0 }
+        g_joint2: { p: 20.0, i: 0.1, d: 0.0 }
+
+    state_publish_rate: 25
+
+controller_list:
+  - name: arm_group_controller
+    action_ns: follow_joint_trajectory
+    default: true
+    type: FollowJointTrajectory
+    joints:
+      - joint1
+      - joint2
+      - joint3
+      - joint4
+  - name: gripper_group_controller
+    action_ns: follow_joint_trajectory
+    default: true
+    type: FollowJointTrajectory
+    joints:
+      - g_joint1
+
+

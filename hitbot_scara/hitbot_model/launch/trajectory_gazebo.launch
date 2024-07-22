@@ -1,0 +1,7 @@
+<launch>
+
+  <include file="$(find hitbot_scara_model)/launch/gazebo.launch"/>
+
+  <include file="$(find hitbot_scara_model)/launch/joint_trajectory_controller.launch"/>
+
+</launch>

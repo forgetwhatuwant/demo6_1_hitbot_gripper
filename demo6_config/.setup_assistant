@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: ""
+    relative_path: /home/hls/demo6_hitbot_gripper/src/demo6_hitbot_gripper/urdf/hitbot_gripper.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/hitbot_model.srdf
+  CONFIG:
+    author_name: hls
+    author_email: hls@hks.cc
+    generated_timestamp: 1721380453

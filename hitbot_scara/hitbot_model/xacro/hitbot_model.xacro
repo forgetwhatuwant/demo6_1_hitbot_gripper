@@ -1,0 +1,436 @@
+<?xml version="1.0"?>
+
+<robot name="hitbot_model" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+  <xacro:include filename="$(find hitbot_model)/xacro/gazebo.xacro"/>
+  <xacro:include filename="$(find hitbot_model)/xacro/transmission.xacro"/>
+
+  <xacro:arg name="RealSense" default="true"/>
+
+
+  <link name="world"/>
+  
+  <joint name="virtual_joint" type="fixed">
+      <parent link="world"/>
+      <child link="body_link"/>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0"/>
+  </joint>
+
+  <link name="body_link">
+    <inertial>
+      <origin
+        xyz="-0.0138312293560343 -0.000411866053746691 0.256337160167261"
+        rpy="0 0 0" />
+      <mass
+        value="2.24199007833205" />
+      <inertia
+        ixx="0.050666129235398"
+        ixy="5.31521674438104E-05"
+        ixz="-0.000156170450349902"
+        iyy="0.0494693482466178"
+        iyz="-0.000576315154792083"
+        izz="0.0102402447612877" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/body_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/body_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.000504238516685096 1.59154905932969E-05 0.0050014568900997"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="0.000178624359738372"
+        ixy="-8.40549948296889E-08"
+        ixz="2.54546420096447E-07"
+        iyy="0.000156117511701691"
+        iyz="-1.49252877491603E-08"
+        izz="0.00033012228687413" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_joint"
+    type="fixed">
+    <origin
+      xyz="0.00090051088649255 7.09655350831888E-05 0.5959999999999"
+      rpy="-3.14159265358979 0 0" />
+    <parent
+      link="body_link" />
+    <child
+      link="base_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link name="link1">
+    <inertial>
+      <origin
+        xyz="0.0803198875267692 0.000148780846096892 0.0252265897594202"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="0.000950129221388707"
+        ixy="1.444594708905E-05"
+        ixz="-7.3306728552493E-05"
+        iyy="0.0034288996904372"
+        iyz="-2.09120551931999E-06"
+        izz="0.00392501623548472" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/link1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint1" type="prismatic">
+    <origin
+      xyz="0 0 0.1059"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.24"
+      upper="0"
+      effort="20000"
+      velocity="1" />
+  </joint>
+
+  <link name="link2">
+    <inertial>
+      <origin
+        xyz="0.111249550444613 -2.84576828027787E-05 0.0351257105818027"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="0.00304095107135875"
+        ixy="-2.82822461071595E-06"
+        ixz="-9.45396417967291E-05"
+        iyy="0.019383542501021"
+        iyz="1.44224511595836E-08"
+        izz="0.0205254157711382" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint2" type="revolute">
+    <origin
+      xyz="0.13184 0 0.057"
+      rpy="0 0 0" />
+    <parent
+      link="link1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="20"
+      velocity="1" />
+  </joint>
+
+  <link name="link3">
+    <inertial>
+      <origin
+        xyz="0.103737453550935 0.000112252164890934 0.0245926645099695"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="0.00115905903075006"
+        ixy="1.78715743351137E-06"
+        ixz="7.11254737335535E-06"
+        iyy="0.00812504052713108"
+        iyz="3.79494507754339E-07"
+        izz="0.00893595498849774" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/link3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint3" type="revolute">
+    <origin
+      xyz="0.22 -9.923E-05 0.0722"
+      rpy="0 0 0" />
+    <parent
+      link="link2" />
+    <child
+      link="link3" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-2.861"
+      upper="0.093"
+      effort="20"
+      velocity="1" />
+  </joint>
+
+  <link name="link4">
+    <inertial>
+      <origin
+        xyz="0.047710269908173 0.000213944685098902 0.0678912049954343"
+        rpy="0 0 0" />
+      <mass
+        value="0.01" />
+      <inertia
+        ixx="0.000170449435352089"
+        ixy="2.86360847822236E-06"
+        ixz="-1.39959892192081E-05"
+        iyy="0.000321403964098005"
+        iyz="1.9821560726031E-07"
+        izz="0.000398137912962931" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/link4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/link4.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint4" type="revolute">
+    <origin
+      xyz="0.2 0 0.0564"
+      rpy="0 0 0" />
+    <parent
+      link="link3" />
+    <child
+      link="link4" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.75"
+      upper="1.75"
+      effort="20"
+      velocity="1" />
+  </joint>
+  <link name="camera_mount">
+    <inertial>
+      <origin
+        xyz="0.00721963040168849 -0.00886926154340457 0.000111441430784953"
+        rpy="0 0 0" />
+      <mass
+        value="0.001" />
+      <inertia
+        ixx="3.22097833750869E-06"
+        ixy="6.5946739159959E-10"
+        ixz="-1.78662070158775E-09"
+        iyy="1.65806785361262E-06"
+        iyz="3.75795546802764E-10"
+        izz="1.834323215729E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/camera_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hitbot_model/meshes/camera_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="joint_camera"
+    type="fixed">
+    <origin
+      xyz="0.08035 -0.009 0.0285"
+      rpy="-3.1416 0 0" />
+    <parent
+      link="link4" />
+    <child
+      link="camera_mount" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link name="ee_link">
+    <inertial>
+      <origin
+        xyz="-0.120961196947787 0.000840350747411248 0.0025036714107482"
+        rpy="0 0 0" />
+      <mass
+        value="0.001" />
+      <inertia
+        ixx="6.24479115732683E-05"
+        ixy="2.8640247649744E-06"
+        ixz="-1.57867719100882E-08"
+        iyy="0.00015978421821829"
+        iyz="1.9833864532431E-07"
+        izz="0.000179272223884709" />
+    </inertial>
+  </link>
+  <joint name="ee_joint"
+    type="fixed">
+    <origin
+      xyz="0.18355 -0.0005 0.077"
+      rpy="3.14159265358979 0 0" />
+    <parent
+      link="link4" />
+    <child
+      link="ee_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+
+
+  <xacro:if value="$(arg RealSense)">
+    <!--  Sensors  -->
+    <xacro:include filename="$(find hitbot_model)/xacro/intel_realsense.urdf.xacro"/>
+    <!-- add the intel realsense to the sensor arch if needed -->
+    <link name="realsense_mountpoint"/>
+    <joint name="realsense_mountpoint_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <parent link="camera_mount"/>
+        <child link="realsense_mountpoint" />
+    </joint>
+    <xacro:intel_realsense_mount prefix="camera" frame="camera" topic="camera" parent_link="realsense_mountpoint"/>
+</xacro:if>
+
+
+</robot>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot>
+    <gazebo>
+        <plugin name="control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
+
+    <gazebo reference="link1">
+        <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <gazebo reference="link2">
+        <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <gazebo reference="link3">
+        <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <gazebo reference="link4">
+        <selfCollide>true</selfCollide>
+    </gazebo>
+    
+</robot>

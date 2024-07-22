@@ -1,0 +1,6 @@
+<launch>
+	<!--Urdf file path-->
+	<param name="robot_description" textfile="$(find hitbot_model)/urdf/hitbot_model.urdf"/>
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+	
+</launch>

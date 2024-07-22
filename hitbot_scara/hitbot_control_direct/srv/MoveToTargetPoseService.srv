@@ -1,0 +1,8 @@
+# generate destination odometry message for the robot
+HitbotCommand hitbot_command
+
+---
+
+# reply executing state
+bool success
+string message

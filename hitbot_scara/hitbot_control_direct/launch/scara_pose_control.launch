@@ -1,0 +1,22 @@
+<launch>
+
+    <arg name="toy_test" default="false"/>
+    <arg name="rviz_diapaly_sb_detection" default="true"/>
+
+    <node pkg="hitbot_scara_control" type="scara_controller.py" name="scara_controller" output="screen" >
+    
+    </node>
+    <!-- <node pkg="hitbot_scara_control" type="sb_picking.py" name="sb_picking" output="screen" /> -->
+    <group if="$(arg toy_test)">
+        <node pkg="sb_detection" type="toy.py" name="toy_test" output="screen" />
+    </group>
+    <group if="$(arg rviz_diapaly_sb_detection)">
+        <include file="$(find hitbot_scara_model)/launch/display.launch" />
+
+        <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_camera)/rviz/pointcloud.rviz" required="true" /> -->
+    </group>
+        <include file="$(find sb_detection)/launch/rs_camera.launch" />
+        <include file="$(find sb_detection)/launch/sb_pose_detection.launch" />
+</launch>
+
+

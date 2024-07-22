@@ -1,0 +1,25 @@
+<launch>
+
+  <include file="$(find hitbot_hw)/launch/hitbot_hw.launch">
+  </include>
+
+  <include file="$(find hitbot_moveit_config)/launch/move_group.launch">
+    <arg name="moveit_controller_manager" value="simple" />
+    <arg name="info" value="true"/>
+    <arg name="pipeline" value="ompl"/>
+
+  </include>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+
+  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <include file="$(find hitbot_moveit_config)/launch/moveit_rviz.launch">
+    <arg name="rviz_config" value="$(find hitbot_moveit_config)/launch/moveit.rviz"/>
+  </include>
+  <!-- robot description -->
+  <!-- load URDF, SRDF and joint_limits configuration -->
+  <include file="$(find hitbot_moveit_config)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true" />
+  </include>
+
+</launch>
